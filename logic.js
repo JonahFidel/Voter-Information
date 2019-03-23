@@ -36,8 +36,6 @@ loadVoterInfoButton.onclick = function inputChange(e) {
 
 
 
-
-
   // // Make sure the client is loaded before calling this method.
   // function execute() {
   // 	return gapi.client.civicinfo.representatives.representativeInfoByAddress({
