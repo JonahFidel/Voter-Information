@@ -34,6 +34,7 @@ loadVoterInfoButton.onclick = function inputChange(e) {
 	  })
 }
 
+//test
 
 
   // // Make sure the client is loaded before calling this method.
