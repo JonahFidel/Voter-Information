@@ -28,13 +28,10 @@ loadVoterInfoButton.onclick = function inputChange(e) {
 	   	// .then(data => console.log(JSON.stringify(data)))
 	   	.then(function(data) {
 	   		const newElement = document.createElement('div')
-
 			document.body.appendChild(newElement)
 			newElement.innerText = JSON.stringify(data);
 	  })
 }
-
-//test
 
 
   // // Make sure the client is loaded before calling this method.
