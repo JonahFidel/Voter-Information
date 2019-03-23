@@ -1,0 +1,11 @@
+h1 {
+	size: 30px;
+}
+
+body {
+	height: 100%;
+}
+
+.btn-primary {
+	margin: 20px;
+}
