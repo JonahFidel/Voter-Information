@@ -1,13 +1,4 @@
 
-// loadVoterInfoButton.onclick = function inputChange(e) {
-// 	console.log('Loading...');
-
-//   // Practical example
-//   fetch('https://www.googleapis.com/civicinfo/v2/elections?key=' + config.apiKey)
-//   .then(response => response.json())
-//   .then(data => console.log(JSON.stringify(data)))
-// }
-
 // zip code input
 var input = document.getElementById("zipCode");
 
@@ -19,51 +10,41 @@ input.addEventListener("keyup", function(event) {
     event.preventDefault();
     // Trigger the button element with a click
     document.getElementById("bigLoadButton").click();
-  }
+}
 });
 
 
-  /**
-   * Sample JavaScript code for civicinfo.representatives.representativeInfoByAddress
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   */
+function loadClient() {
 
-   function loadClient() {
-   	// gapi.client.setApiKey(config.apiKey);
-   	// return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/civicinfo/v2/rest")
-   	// .then(function() { console.log("GAPI client loaded for API"); },
-   	// 	function(err) { console.error("Error loading GAPI client for API", err); });
+	if (!!document.getElementById('blockElement')){
+		document.body.removeChild(document.getElementById('blockElement'));
+	}
 
-   		var address = document.getElementById('zipCode').value;
+	var address = document.getElementById('zipCode').value;
 
-	   	// Practical example
-	   	fetch('https://www.googleapis.com/civicinfo/v2/representatives?address=' + address + '&key=' + config.apiKey)
-	   	.then(response => response.json())
-	   	// .then(data => console.log(JSON.stringify(data)))
-	   	.then(function(data) {
-	   		const newElement = document.createElement('div')
-			document.body.appendChild(newElement)
-			newElement.innerText = /*JSON.stringify(*/data.normalizedInput.city/*)*/;
-	  })
+	fetch('https://www.googleapis.com/civicinfo/v2/representatives?address=' + address + '&key=' + config.apiKey)
+	.then(response => response.json())
+	.then(function(data) {
+		const townName = document.createElement('div');
+		townName.id = 'townName';
+		townName.innerText = data.normalizedInput.city + ', ' + data.normalizedInput.state + '\n';
+		const blockElement = document.createElement('div');
+		blockElement.id = 'blockElement';
+		document.body.appendChild(blockElement);
+		document.getElementById('blockElement').appendChild(townName);
+		for (var i = 0; i < data.offices.length; i++){
+			for (var j = 0; j < data.offices[i].officialIndices.length; j++){
+				const office = document.createElement('strong');
+				office.id = 'office';
+				office.innerText = data.offices[i].name + ': ';
+				const official = document.createElement('div');
+				official.id = 'official';	
+				official.innerText = data.officials[data.offices[i].officialIndices[j]].name + ', ' + data.officials[data.offices[i].officialIndices[j]].party;
+				document.getElementById('blockElement').appendChild(office);
+				document.getElementById('blockElement').appendChild(official);
+			}
+		}	
+	})
 }
-
-
-  // // Make sure the client is loaded before calling this method.
-  // function execute() {
-  // 	return gapi.client.civicinfo.representatives.representativeInfoByAddress({
-  // 		"address": "03062",
-  // 		"includeOffices": true,
-  // 		"levels": [
-  // 		"country"
-  // 		]
-  // 	})
-  // 	.then(function(response) {
-  //               // Handle the results here (response.result has the parsed body).
-  //               console.log("Response", response);
-  //           },
-  //           function(err) { console.error("Execute error", err); });
-  // }
-  // gapi.load("client");
 
 

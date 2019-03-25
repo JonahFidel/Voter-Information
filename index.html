@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="body">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container">
 			<a class="navbar-brand" href="#">Navbar</a>
@@ -39,26 +39,25 @@
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 				</form>
 			</div>
 		</div>
 	</nav>
 	<h1>Voter Information</h1>
 	<form>
-		<div class="form-group row">
-			<label for="zipCode" class="col-sm-2 col-form-label">Zip Code</label>
+		<div class="form-group flex-md-row col-4 d-flex">
+			<label class="col-form-label no-space-break">Zip Code</label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
 			</div>
 		</div>
 	</form>
-	<div class="container">
+	<!-- <div class="container"> -->
 <!-- 		<button id="loadVoterInfoButton" class="btn btn-primary">DANGER</button>
--->		<button class="btn btn-danger" id="bigLoadButton" onclick="loadClient()">BIG LOAD</button>
+-->		<button class="btn btn-primary" id="bigLoadButton" onclick="loadClient()">BIG LOAD</button>
 <!-- 		<button class="btn btn-secondary" onclick="execute()">BIG EXECUTE</button>
--->	</div>
-
+-->	<!-- </div>
+ -->
 <script src="https://apis.google.com/js/api.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

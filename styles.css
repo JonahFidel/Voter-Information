@@ -8,9 +8,31 @@ body {
 }
 
 .btn-primary {
-	margin: 20px;
+	margin-right: 20px;
+	margin-left: 20px;
 }
 
 .form-group {
 	margin: 20px;
 }
+
+#townName {
+	margin: 20px;
+	font-size: 3rem;
+}
+
+#official {
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+}
+
+#office {
+	text-decoration: bold;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+
+.no-space-break{
+    white-space:nowrap;
+ }
