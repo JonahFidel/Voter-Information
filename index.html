@@ -44,12 +44,20 @@
 			</div>
 		</div>
 	</nav>
+	<h1>Voter Information</h1>
+	<form>
+		<div class="form-group row">
+			<label for="zipCode" class="col-sm-2 col-form-label">Zip Code</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
+			</div>
+		</div>
+	</form>
 	<div class="container">
-		<button id="loadVoterInfoButton" class="btn btn-primary">DANGER</button>
-		<button class="btn btn-danger" onclick="loadClient()">BIG LOAD</button>
-		<button class="btn btn-secondary" onclick="execute()">BIG EXECUTE</button>
-	</div>
-</div>
+<!-- 		<button id="loadVoterInfoButton" class="btn btn-primary">DANGER</button>
+-->		<button class="btn btn-danger" id="bigLoadButton" onclick="loadClient()">BIG LOAD</button>
+<!-- 		<button class="btn btn-secondary" onclick="execute()">BIG EXECUTE</button>
+-->	</div>
 
 <script src="https://apis.google.com/js/api.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,13 +1,26 @@
 
-loadVoterInfoButton.onclick = function inputChange(e) {
-	console.log('Loading...');
+// loadVoterInfoButton.onclick = function inputChange(e) {
+// 	console.log('Loading...');
 
-  // Practical example
-  fetch('https://www.googleapis.com/civicinfo/v2/elections?key=' + config.apiKey)
-  .then(response => response.json())
-  .then(data => console.log(JSON.stringify(data)))
-}
+//   // Practical example
+//   fetch('https://www.googleapis.com/civicinfo/v2/elections?key=' + config.apiKey)
+//   .then(response => response.json())
+//   .then(data => console.log(JSON.stringify(data)))
+// }
 
+// zip code input
+var input = document.getElementById("zipCode");
+
+// Execute a function when the user releases a key on the keyboard
+input.addEventListener("keyup", function(event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("bigLoadButton").click();
+  }
+});
 
 
   /**
@@ -22,14 +35,16 @@ loadVoterInfoButton.onclick = function inputChange(e) {
    	// .then(function() { console.log("GAPI client loaded for API"); },
    	// 	function(err) { console.error("Error loading GAPI client for API", err); });
 
+   		var address = document.getElementById('zipCode').value;
+
 	   	// Practical example
-	   	fetch('https://content.googleapis.com/discovery/v1/apis/civicinfo/v2/rest?key=' + config.apiKey)
+	   	fetch('https://www.googleapis.com/civicinfo/v2/representatives?address=' + address + '&key=' + config.apiKey)
 	   	.then(response => response.json())
 	   	// .then(data => console.log(JSON.stringify(data)))
 	   	.then(function(data) {
 	   		const newElement = document.createElement('div')
 			document.body.appendChild(newElement)
-			newElement.innerText = JSON.stringify(data);
+			newElement.innerText = /*JSON.stringify(*/data.normalizedInput.city/*)*/;
 	  })
 }
 

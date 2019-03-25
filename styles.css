@@ -1,5 +1,6 @@
 h1 {
 	size: 30px;
+	margin: 20px;
 }
 
 body {
@@ -7,5 +8,9 @@ body {
 }
 
 .btn-primary {
+	margin: 20px;
+}
+
+.form-group {
 	margin: 20px;
 }
