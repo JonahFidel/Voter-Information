@@ -1,24 +1,16 @@
 h1 {
-	size: 30px;
+	size: 4rem;
 	margin: 20px;
 }
 
 body {
 	height: 100%;
-}
-
-.btn-primary {
-	margin-right: 20px;
-	margin-left: 20px;
-}
-
-.form-group {
-	margin: 20px;
+	text-align: center;
 }
 
 #townName {
 	margin: 20px;
-	font-size: 3rem;
+	font-size: 2rem;
 }
 
 #official {
@@ -33,6 +25,4 @@ body {
 	margin-left: 20px;
 }
 
-.no-space-break{
-    white-space:nowrap;
- }
+

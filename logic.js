@@ -16,32 +16,45 @@ input.addEventListener("keyup", function(event) {
 
 function loadClient() {
 
-	if (!!document.getElementById('blockElement')){
-		document.body.removeChild(document.getElementById('blockElement'));
-	}
-
 	var address = document.getElementById('zipCode').value;
 
 	fetch('https://www.googleapis.com/civicinfo/v2/representatives?address=' + address + '&key=' + config.apiKey)
 	.then(response => response.json())
 	.then(function(data) {
+		if (!!document.getElementById('blockElement')){
+			document.body.removeChild(document.getElementById('blockElement'));
+		}
 		const townName = document.createElement('div');
 		townName.id = 'townName';
 		townName.innerText = data.normalizedInput.city + ', ' + data.normalizedInput.state + '\n';
 		const blockElement = document.createElement('div');
 		blockElement.id = 'blockElement';
 		document.body.appendChild(blockElement);
+		const colElement = document.createElement('div');
+		colElement.id = 'colElement';
 		document.getElementById('blockElement').appendChild(townName);
+		document.getElementById('blockElement').appendChild(colElement);
+		var count = 0;
+
 		for (var i = 0; i < data.offices.length; i++){
 			for (var j = 0; j < data.offices[i].officialIndices.length; j++){
+				document.getElementById('colElement').classList.add('row');	
+				const item = document.createElement('div');
+				item.id = 'item' + count;
+				document.getElementById('colElement').appendChild(item);
 				const office = document.createElement('strong');
 				office.id = 'office';
 				office.innerText = data.offices[i].name + ': ';
 				const official = document.createElement('div');
 				official.id = 'official';	
 				official.innerText = data.officials[data.offices[i].officialIndices[j]].name + ', ' + data.officials[data.offices[i].officialIndices[j]].party;
-				document.getElementById('blockElement').appendChild(office);
-				document.getElementById('blockElement').appendChild(official);
+				document.getElementById('item' + count).appendChild(office);
+				document.getElementById('item' + count).appendChild(official);
+				var itemRef = document.getElementById('item' + count);
+				itemRef.classList.add('col-sm-6');
+				itemRef.classList.add('col-md-4');
+				itemRef.classList.add('col-lg-3');
+				count++;
 			}
 		}	
 	})
