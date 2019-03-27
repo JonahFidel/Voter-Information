@@ -48,8 +48,18 @@ function loadClient() {
 				const official = document.createElement('div');
 				official.id = 'official';	
 				official.innerText = data.officials[data.offices[i].officialIndices[j]].name + ', ' + data.officials[data.offices[i].officialIndices[j]].party;
+				const officialImage = document.createElement('img');
+				officialImage.id = 'officialImage';
+				if (!!data.officials[data.offices[i].officialIndices[j]].photoUrl){
+					officialImage.src = data.officials[data.offices[i].officialIndices[j]].photoUrl;
+				}
+				officialImage.height = 130;
+				officialImage.width = 100;
 				document.getElementById('item' + count).appendChild(office);
 				document.getElementById('item' + count).appendChild(official);
+				if (!!officialImage.src){
+					document.getElementById('item' + count).appendChild(officialImage);
+				}
 				var itemRef = document.getElementById('item' + count);
 				itemRef.classList.add('col-sm-6');
 				itemRef.classList.add('col-md-4');
