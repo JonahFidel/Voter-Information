@@ -2,17 +2,16 @@
 // zip code input
 var input = document.getElementById("zipCode");
 
-// Execute a function when the user releases a key on the keyboard
+// execute on 'enter'
 input.addEventListener("keyup", function(event) {
-  // Number 13 is the "Enter" key on the keyboard
-  if (event.keyCode === 13) {
-    // Cancel the default action, if needed
-    event.preventDefault();
-    // Trigger the button element with a click
-    document.getElementById("bigLoadButton").click();
-}
-});
 
+	// Number 13 is the "Enter" key on the keyboard
+	if (event.keyCode === 13) {
+
+		// Trigger the button element with a click
+		document.getElementById("loadRepInfo").click();
+	}
+});
 
 function loadClient() {
 
@@ -21,33 +20,55 @@ function loadClient() {
 	fetch('https://www.googleapis.com/civicinfo/v2/representatives?address=' + address + '&key=' + config.apiKey)
 	.then(response => response.json())
 	.then(function(data) {
+
+		// clear page on new search
 		if (!!document.getElementById('blockElement')){
 			document.body.removeChild(document.getElementById('blockElement'));
 		}
+		
+		// grab town name
 		const townName = document.createElement('div');
 		townName.id = 'townName';
 		townName.innerText = data.normalizedInput.city + ', ' + data.normalizedInput.state + '\n';
+
+		// the main page: town name and content together
 		const blockElement = document.createElement('div');
 		blockElement.id = 'blockElement';
 		document.body.appendChild(blockElement);
-		const colElement = document.createElement('div');
-		colElement.id = 'colElement';
+
+		// the content
+		const contentElement = document.createElement('div');
+		contentElement.id = 'contentElement';
+
+		// create the page
 		document.getElementById('blockElement').appendChild(townName);
-		document.getElementById('blockElement').appendChild(colElement);
+		document.getElementById('blockElement').appendChild(contentElement);
+
+		//to keep track of items
 		var count = 0;
 
 		for (var i = 0; i < data.offices.length; i++){
 			for (var j = 0; j < data.offices[i].officialIndices.length; j++){
-				document.getElementById('colElement').classList.add('row');	
+
+				// allows for column responsiveness
+				document.getElementById('contentElement').classList.add('row');	
+
+				// single card item
 				const item = document.createElement('div');
-				item.id = 'item' + count;
-				document.getElementById('colElement').appendChild(item);
+				item.id = 'listItem' + count;
+				document.getElementById('contentElement').appendChild(item);
+
+				// office
 				const office = document.createElement('strong');
 				office.id = 'office';
 				office.innerText = data.offices[i].name + ': ';
+
+				// official
 				const official = document.createElement('div');
 				official.id = 'official';	
 				official.innerText = data.officials[data.offices[i].officialIndices[j]].name + ', ' + data.officials[data.offices[i].officialIndices[j]].party;
+
+				// create the image
 				const officialImage = document.createElement('img');
 				officialImage.id = 'officialImage';
 				if (!!data.officials[data.offices[i].officialIndices[j]].photoUrl){
@@ -55,15 +76,20 @@ function loadClient() {
 				}
 				officialImage.height = 130;
 				officialImage.width = 100;
-				document.getElementById('item' + count).appendChild(office);
-				document.getElementById('item' + count).appendChild(official);
+
+				// add UI elements to the page
+				document.getElementById('listItem' + count).appendChild(office);
+				document.getElementById('listItem' + count).appendChild(official);
 				if (!!officialImage.src){
-					document.getElementById('item' + count).appendChild(officialImage);
+					document.getElementById('listItem' + count).appendChild(officialImage);
 				}
-				var itemRef = document.getElementById('item' + count);
+
+				// configure page UI elements into responsive columns
+				var itemRef = document.getElementById('listItem' + count);
 				itemRef.classList.add('col-sm-6');
 				itemRef.classList.add('col-md-4');
 				itemRef.classList.add('col-lg-3');
+
 				count++;
 			}
 		}	
