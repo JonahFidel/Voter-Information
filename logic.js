@@ -1,4 +1,6 @@
 
+console.log(i18nZipcodes('fr', '75014')); // true
+
 // zip code input
 var input = document.getElementById("zipCode");
 
@@ -25,7 +27,7 @@ function loadClient() {
 		if (!!document.getElementById('blockElement')){
 			document.body.removeChild(document.getElementById('blockElement'));
 		}
-		
+
 		// grab town name
 		const townName = document.createElement('div');
 		townName.id = 'townName';
@@ -95,5 +97,4 @@ function loadClient() {
 		}	
 	})
 }
-
 
