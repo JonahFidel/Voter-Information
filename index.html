@@ -25,14 +25,14 @@
 	</nav>
 	<div>
 		<h1>Voter Information</h1>
-		<form class="form-inline d-flex justify-content-center align-items-center">
+		<form class="form-inline d-flex justify-content-center align-items-center" onsubmit="return false">
 			<div class="form-group flex-md-row mx-2">
 				<label class="col-form-label mx-2">Zip Code</label>
 				<div>
 					<input type="text" class="form-control" id="zipCode" placeholder="Zip Code">
 				</div>
 			</div>
-			<button class="btn btn-primary" id="loadRepInfo" onclick="loadClient()">Load</button>
+			<button class="btn btn-primary" type="button" id="loadRepInfo" onclick="loadClient()">Load</button>
 		</form> 
 	</div>
 	
