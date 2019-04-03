@@ -1,2 +1,4 @@
 # Keep API key private
 config.js
+
+.DS_Store

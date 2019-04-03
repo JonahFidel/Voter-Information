@@ -1,21 +1,41 @@
-
-console.log(i18nZipcodes('fr', '75014')); // true
-
 // zip code input
 var input = document.getElementById("zipCode");
+var button = document.getElementById("loadRepInfo");
+
+button.addEventListener("click", function(){
+	if(validateZipCode(input.value)){
+		loadClient();
+	} else {
+		alert("Invalid Zip Code, please try again.")
+	}
+});
 
 // execute on 'enter'
 input.addEventListener("keyup", function(event) {
-
 	// Number 13 is the "Enter" key on the keyboard
 	if (event.keyCode === 13) {
-
-		event.preventDefault();
-
 		// Trigger the button element with a click
 		document.getElementById("loadRepInfo").click();
 	}
 });
+
+
+function badZipCode() {
+	if(!!document.getElementById('errorMsg')){
+		document.body.removeChild(document.getElementById('errorMsg'));
+	}
+	const item = document.createElement('div');
+	item.id = 'errorMsg';
+	item.textContent = "Please enter a valid zip code.";
+	item.classList.add("error");
+	document.body.appendChild(item);
+}
+
+function validateZipCode(elementValue){
+    var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+     return zipCodePattern.test(elementValue);
+}
+
 
 function loadClient() {
 
@@ -24,6 +44,10 @@ function loadClient() {
 	fetch('https://www.googleapis.com/civicinfo/v2/representatives?address=' + address + '&key=' + config.apiKey)
 	.then(response => response.json())
 	.then(function(data) {
+		// clear bad zip code error message
+		if(!!document.getElementById('errorMsg')){
+			document.body.removeChild(document.getElementById('errorMsg'));
+		}
 
 		// clear page on new search
 		if (!!document.getElementById('blockElement')){
@@ -48,7 +72,7 @@ function loadClient() {
 		document.getElementById('blockElement').appendChild(townName);
 		document.getElementById('blockElement').appendChild(contentElement);
 
-		//to keep track of items
+		// to keep track of items
 		var count = 0;
 
 		for (var i = 0; i < data.offices.length; i++){
@@ -97,6 +121,6 @@ function loadClient() {
 				count++;
 			}
 		}	
-	})
+	}).catch(error => badZipCode());
 }
 
