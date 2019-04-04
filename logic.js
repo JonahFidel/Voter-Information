@@ -6,7 +6,7 @@ button.addEventListener("click", function(){
 	if(validateZipCode(input.value)){
 		loadClient();
 	} else {
-		alert("Invalid Zip Code, please try again.")
+		badZipCode();
 	}
 });
 
@@ -29,6 +29,7 @@ function badZipCode() {
 	item.textContent = "Please enter a valid zip code.";
 	item.classList.add("error");
 	document.body.appendChild(item);
+	document.getElementById('zipCode').classList.add('zipFormError');
 }
 
 function validateZipCode(elementValue){
@@ -47,6 +48,11 @@ function loadClient() {
 		// clear bad zip code error message
 		if(!!document.getElementById('errorMsg')){
 			document.body.removeChild(document.getElementById('errorMsg'));
+		}
+
+		//remove red background from form if successful
+		if (document.getElementById('zipCode').classList.contains('zipFormError')){
+			document.getElementById('zipCode').classList.remove('zipFormError');
 		}
 
 		// clear page on new search
