@@ -24,10 +24,6 @@ body {
 	font-style: italic;
 }
 
-.zipFormError {
-	background-color: #e886aa;
-}
-
 #townName {
 	margin: 20px;
 	font-size: 2rem;

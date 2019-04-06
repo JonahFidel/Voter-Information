@@ -29,7 +29,6 @@ function badZipCode() {
 	item.textContent = "Please enter a valid zip code.";
 	item.classList.add("error");
 	document.body.appendChild(item);
-	document.getElementById('zipCode').classList.add('zipFormError');
 }
 
 function validateZipCode(elementValue){
